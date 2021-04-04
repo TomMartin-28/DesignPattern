@@ -1,6 +1,7 @@
 package characters;
 
 import abilities.Ability;
+import strategie.celebrationVictoire.CelebrationVictoire;
 
 public abstract class Character {
     String name;
@@ -10,6 +11,7 @@ public abstract class Character {
     Ability ability;
     boolean abilityUsed;
     boolean dodge;
+    CelebrationVictoire celebrationVictoire;
 
 
     public Character(String name, int pv, int atk, Ability ability) {
@@ -22,6 +24,10 @@ public abstract class Character {
         this.pv = pv;
         this.atk = atk;
         this.type = setType();
+    }
+    
+    public void effectuerCelebration() {
+    	celebrationVictoire.celebrer();
     }
 
     public String getName() {
