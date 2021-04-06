@@ -3,12 +3,14 @@ package battles;
 import characters.*;
 import characters.Character;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Battle {
     Character c1, c2;
     int lap;
-
+    LogSingleton log = LogSingleton.getInstance();
     public Battle() {
         intro();
         battle();
@@ -16,6 +18,12 @@ public class Battle {
 
     public void intro(){
         System.out.println("Bienvenue sur Fight for nothing!");
+        log.addText("Log de la partie ");
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+        log.addText(formattedDate);
+        
         boolean choice1 = false, choice2 = false;
         Scanner sc = new Scanner(System.in);
         while(!choice1){
@@ -51,7 +59,7 @@ public class Battle {
             System.out.println("Que va faire " + first.getName() + "? Vie restante: "+ first.getPv() +"\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
             String str = sc.next().toLowerCase();
             if (str.compareTo("attack") == 0 || str.compareTo("1") == 0) {
-                if(!last.isDodge()){
+                if(!last.isDodge() && lap != 1){
                     System.out.println(last.getName() + " n'a pas réussi à esquiver.");
                     attack(first, last);
                 }
@@ -73,7 +81,7 @@ public class Battle {
                 forfeit = first;
                 break;
             }
-            if(first.getPv() <= 0) break;
+            if(last.getPv() <= 0) break;
             System.out.println("Que va faire " + last.getName() + "? Vie restante: "+ last.getPv() +"\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
             str = sc.next().toLowerCase();
             if (str.compareTo("attack") == 0 || str.compareTo("1") == 0) {
@@ -102,15 +110,24 @@ public class Battle {
             lap++;
         }
         sc.close();
-        if(first.getPv() == 0 || forfeit == first){
+        if(first.getPv() <= 0 || forfeit == first){
             System.out.println("Vainqueur: " + last.getName());
             last.effectuerCelebration();
+            log.addText("\nJoueur 1:" + c1.getName());
+            log.addText("\nJoueur 2:" + c2.getName());
+            log.addText("\nCombat effectu� en "+lap+" tours.\n");
+            log.addText("Vainqueur: " + last.getName()+"\n\n");
         }
-        else if(last.getPv() == 0 || forfeit == last){
+        else if(last.getPv() <= 0 || forfeit == last){
             System.out.println("Vainqueur: " + first.getName());
             first.effectuerCelebration();
+            log.addText("\nJoueur 1:" + c1.getName());
+            log.addText("\nJoueur 2:" + c2.getName());
+            log.addText("\nCombat effectu� en "+lap+" tours.\n");
+            log.addText("Vainqueur: " + first.getName()+"\n\n");
         }
         System.out.println("Fin de combat, " + lap + " tours");
+        log.close();
     }
 
     private int choice() {

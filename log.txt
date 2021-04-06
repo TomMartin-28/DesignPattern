@@ -1,0 +1,11 @@
+Log de la partie 06-04-2021 13:36:12
+Joueur 1:Mario
+Joueur 2:Peach
+Combat effectué en 6 tours.
+Vainqueur: Peach
+
+Log de la partie 06-04-2021 13:37:54
+Joueur 1:Mario
+Joueur 2:Peach
+Combat effectué en 5 tours.
+Vainqueur: Mario
