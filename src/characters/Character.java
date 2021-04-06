@@ -1,11 +1,17 @@
 package characters;
 
 import abilities.Ability;
+import observateur.AffichagePV;
+import observateur.Observateur;
+import observateur.Sujet;
 import strategie.celebrationVictoire.CelebrationVictoire;
 
-public abstract class Character {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Character implements Sujet {
+    List<Observateur> observateurs = new ArrayList();
     String name;
-    String type;
     int pv;
     int atk;
     Ability ability;
@@ -23,7 +29,7 @@ public abstract class Character {
         this.name = name;
         this.pv = pv;
         this.atk = atk;
-        this.type = setType();
+        new AffichagePV(this);
     }
     
     public void effectuerCelebration() {
@@ -40,10 +46,6 @@ public abstract class Character {
 
     public int getPv() {
         return pv;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public Ability getAbility() {
@@ -78,22 +80,30 @@ public abstract class Character {
         this.pv = pv;
     }
 
+    public void setCelebrationVictoire(CelebrationVictoire celebrationVictoire) {
+        this.celebrationVictoire = celebrationVictoire;
+    }
+
     @Override
     public String toString() {
-        return type + "{" +
+        return "{" +
                 "name='" + name + '\'' +
                 ", pv=" + pv +
                 ", atk=" + atk +
                 '}';
     }
 
-    private String setType() {
-        String type = this.getClass().getName();
-        String res = null;
-        for (int i = 0; i < type.length(); i++) {
-            if (type.charAt(i) == '.')
-                res = type.substring(i + 1);
+    public void enregistrerObservateur(Observateur o) {	//++
+        observateurs.add(o);
+    }
+
+    public void supprimerObservateur(Observateur o) {	//++
+        observateurs.remove(o);
+    }
+
+    public void notiferObservateurs() {
+        for (Observateur obs: observateurs) {
+            obs.actualiser(name,pv);
         }
-        return res;
     }
 }

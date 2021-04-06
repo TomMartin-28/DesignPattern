@@ -1,13 +1,13 @@
 package battles;
 
-import characters.*;
 import characters.Character;
+import characters.FactoryCharacter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Battle {
+public class Battle implements BattleInterface{
     Character c1, c2;
     int lap;
     LogSingleton log = LogSingleton.getInstance();
@@ -56,12 +56,13 @@ public class Battle {
             last = c1;
         }
         while (first.getPv() > 0 && last.getPv() > 0) {
-            System.out.println("Que va faire " + first.getName() + "? Vie restante: "+ first.getPv() +"\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
+            first.notiferObservateurs();
+            System.out.println("Que va faire " + first.getName() + "?\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
             String str = sc.next().toLowerCase();
             if (str.compareTo("attack") == 0 || str.compareTo("1") == 0) {
-                if(!last.isDodge() && lap != 1){
-                    System.out.println(last.getName() + " n'a pas réussi à esquiver.");
+                if(!last.isDodge()){
                     attack(first, last);
+                    last.notiferObservateurs();
                 }
                 else {
                     System.out.println(last.getName() + " a réussi à esquiver.");
@@ -82,12 +83,12 @@ public class Battle {
                 break;
             }
             if(last.getPv() <= 0) break;
-            System.out.println("Que va faire " + last.getName() + "? Vie restante: "+ last.getPv() +"\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
+            System.out.println("Que va faire " + last.getName() + "?\n(1)Attaquer\t(2)Esquiver\t(3)Capacité spéciale\t(4)Déclarer forfait");
             str = sc.next().toLowerCase();
             if (str.compareTo("attack") == 0 || str.compareTo("1") == 0) {
                 if(!last.isDodge()){
-                    System.out.println(first.getName() + " n'a pas réussi à esquiver.");
                     attack(last, first);
+                    first.notiferObservateurs();
                 }
                 else {
                     System.out.println(first.getName() + " a réussi à esquiver.");
@@ -115,7 +116,7 @@ public class Battle {
             last.effectuerCelebration();
             log.addText("\nJoueur 1:" + c1.getName());
             log.addText("\nJoueur 2:" + c2.getName());
-            log.addText("\nCombat effectu� en "+lap+" tours.\n");
+            log.addText("\nCombat effectué en "+lap+" tours.\n");
             log.addText("Vainqueur: " + last.getName()+"\n\n");
         }
         else if(last.getPv() <= 0 || forfeit == last){
@@ -123,7 +124,7 @@ public class Battle {
             first.effectuerCelebration();
             log.addText("\nJoueur 1:" + c1.getName());
             log.addText("\nJoueur 2:" + c2.getName());
-            log.addText("\nCombat effectu� en "+lap+" tours.\n");
+            log.addText("\nCombat effectué en "+lap+" tours.\n");
             log.addText("Vainqueur: " + first.getName()+"\n\n");
         }
         System.out.println("Fin de combat, " + lap + " tours");

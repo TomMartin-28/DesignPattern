@@ -1,11 +1,54 @@
-Log de la partie 06-04-2021 13:36:12
+Log de la partie 06-04-2021 18:57:56
 Joueur 1:Mario
-Joueur 2:Peach
-Combat effectu� en 6 tours.
-Vainqueur: Peach
-
-Log de la partie 06-04-2021 13:37:54
-Joueur 1:Mario
-Joueur 2:Peach
-Combat effectu� en 5 tours.
+Joueur 2:Daisy
+Combat effectué en 7 tours.
 Vainqueur: Mario
+
+Log de la partie 06-04-2021 19:01:05
+Joueur 1:Mario
+Joueur 2:Bowser
+Combat effectué en 6 tours.
+Vainqueur: Bowser
+
+Log de la partie en 2 contre 2 06-04-2021 19:04:31
+Joueur 1:Mario
+Joueur 2:Luigi
+Joueur 3:Peach
+Joueur 4:Daisy
+Combat effectué en 3 tours.
+Vainqueur: Mario et Luigi
+
+Log de la partie en 2 contre 2 06-04-2021 19:16:19
+Joueur 1:Bowser
+Joueur 2:Mario
+Joueur 3:Peach
+Joueur 4:Zelda
+Combat effectuÃ© en 2 tours.
+Vainqueur: Bowser et Mario
+
+Log de la partie en 2 contre 2 06-04-2021 19:25:44
+Joueur 1:Mario
+Joueur 2:Luigi
+Joueur 3:Bowser
+Joueur 4:Toad
+Combat effectuÃ© en 3 tours.
+Vainqueur: Bowser et Toad
+
+Log de la partie 06-04-2021 19:34:02
+Joueur 1:Mario
+Joueur 2:Luigi
+Combat effectuÃ© en 4 tours.
+Vainqueur: Luigi
+
+Log de la partie 06-04-2021 19:37:13
+Joueur 1:Mario
+Joueur 2:Luigi
+Combat effectuÃ© en 4 tours.
+Vainqueur: Mario
+
+Log de la partie 06-04-2021 19:38:15
+Joueur 1:Mario
+Joueur 2:Luigi
+Combat effectuÃ© en 4 tours.
+Vainqueur: Mario
+
