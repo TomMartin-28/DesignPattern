@@ -121,16 +121,8 @@ public class Battle {
         if(rand <= 30) character.setDodge(true);
     }
 
-    private Character select(String character){ //TODO factorycharacter
-        if(character.equals("Mario")) return new Mario();
-        if(character.equals("Luigi")) return new Luigi();
-        if(character.equals("Bowser")) return new Bowser();
-        if(character.equals("Daisy")) return new Daisy();
-        if(character.equals("Link")) return new Link();
-        if(character.equals("Peach")) return new Peach();
-        if(character.equals("Toad")) return new Toad();
-        if(character.equals("Yoshi")) return new Yoshi();
-        if(character.equals("Zelda")) return new Zelda();
-        else return null;
+    private Character select(String character){
+        FactoryCharacter factory = new FactoryCharacter();
+        return factory.getPersonnage(character);
     }
 }
