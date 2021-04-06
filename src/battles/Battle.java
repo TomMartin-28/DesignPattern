@@ -102,8 +102,14 @@ public class Battle {
             lap++;
         }
         sc.close();
-        if(first.getPv() == 0 || forfeit == first) System.out.println("Vainqueur: " + last.getName());
-        else if(last.getPv() == 0 || forfeit == last) System.out.println("Vainqueur: " + first.getName());
+        if(first.getPv() == 0 || forfeit == first){
+            System.out.println("Vainqueur: " + last.getName());
+            last.effectuerCelebration();
+        }
+        else if(last.getPv() == 0 || forfeit == last){
+            System.out.println("Vainqueur: " + first.getName());
+            first.effectuerCelebration();
+        }
         System.out.println("Fin de combat, " + lap + " tours");
     }
 
