@@ -118,8 +118,8 @@ public class Battle {
         return rand % 2;
     }
 
-    private void attack(Character attaquant, Character attaqué) {
-        attaqué.setPv(attaqué.getPv() - attaquant.getAtk());
+    private void attack(Character attaquant, Character attaque) {
+        attaque.setPv(attaque.getPv() - attaquant.getAtk());
     }
 
     private void dodge(Character character) {
