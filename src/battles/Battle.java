@@ -121,7 +121,7 @@ public class Battle {
         if(rand <= 30) character.setDodge(true);
     }
 
-    private Character select(String character){
+    private Character select(String character){ //TODO factorycharacter
         if(character.equals("Mario")) return new Mario();
         if(character.equals("Luigi")) return new Luigi();
         if(character.equals("Bowser")) return new Bowser();
